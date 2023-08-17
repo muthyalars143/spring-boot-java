@@ -1,6 +1,5 @@
 # Writing the updated Gradle-based lab content with explanations to a markdown file
 
-updated_gradle_based_lab_content = """
 ## **Spring Boot CLI Lab with Gradle: Setting Up and Running a Web Application**
 
 ### **Objective:**
@@ -133,9 +132,3 @@ For the database:
 Congratulations! You've set up JDK 17, organized your workspace, and run a simple web application using Spring Boot with Gradle. The application returns "Hello, World" for the root URL. With this foundation, you can further explore Spring Boot and enhance your application by adding more features or endpoints.
 """
 
-# Saving the updated Gradle-based content to a markdown file
-updated_gradle_based_lab_file_path = "/mnt/data/updated_gradle_based_spring_boot_cli_lab.md"
-with open(updated_gradle_based_lab_file_path, "w") as file:
-    file.write(updated_gradle_based_lab_content)
-
-updated_gradle_based_lab_file_path
