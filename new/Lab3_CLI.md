@@ -40,7 +40,7 @@ Learn how to set up and run a simple web application using the Spring Boot CLI w
     Use the `spring init` command to create a new project with Gradle. This command fetches the project setup from [start.spring.io](https://start.spring.io). For this lab, we'll create a Gradle-based project that uses the web and JPA dependencies:
 
     ```bash
-    spring init --dependencies=web,data-jpa --build=gradle my-project
+    spring init --dependencies=web,data-jpa --build=gradle --type gradle-project my-project
     ```
 
     This command creates a `my-project` directory with a Gradle-based project that uses `spring-boot-starter-web` and `spring-boot-starter-data-jpa`.
