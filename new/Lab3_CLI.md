@@ -75,6 +75,7 @@ Learn how to set up and run a simple web application using the Spring Boot CLI w
     Create a new Groovy file inside `src/main/groovy/com/example/demo`:
 
     ```bash
+    cd my-project/
     mkdir -p src/main/groovy/com/example/demo
     touch src/main/groovy/com/example/demo/AppController.groovy
     ```
