@@ -20,7 +20,38 @@ sdk install java 17.0.8-oracle
 sdk use java 17.0.8-oracle
 ```
 
+
 ### **3. Create and Navigate to the Project Directory**
+
+Organizing our workspace is crucial. We'll create a separate directory for our project to ensure that all our files are in one place.
+
+```bash
+mkdir -p /workspace/spring-boot-java/savings-account-service
+cd /workspace/spring-boot-java/savings-account-service
+```
+
+### **4. Initialize Your Spring Boot Application with Gradle**
+
+Spring Initializr is a convenient tool that bootstraps our project with necessary configurations. We'll use Gradle, a powerful build tool that automates the building, testing, publishing, and more.
+
+```bash
+curl https://start.spring.io/starter.zip -o savings-account-service.zip
+unzip savings-account-service.zip -d savings-account-service
+cd savings-account-service
+```
+
+#### **Main Application Class**
+
+Create the main application class at `/workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountApplication.java`.
+
+#### **SavingsAccount Entity**
+
+Create the entity class at `/workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccount.java`.
+
+#### **SavingsAccountController**
+
+Create the controller class at `/workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountController.java`.
+
 
 Organizing our workspace is crucial. We'll create a separate directory for our project to ensure that all our files are in one place.
 
