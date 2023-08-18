@@ -342,7 +342,23 @@ In this class:
 
 With this main class in place, you can run the application using the provided Gradle command in step 7.
 
+
 ### **7. Testing the HATEOAS Driven Service**
+
+Run the Spring Boot application using Gradle:
+
+```bash
+./gradlew bootRun
+```
+
+With the application running, test the various endpoints:
+
+1. **Fetching a Savings Account**: Visit `http://localhost:8080/savings-accounts/1` in your browser. The response should display details of the first savings account, enriched with a self-referential HATEOAS link.
+
+2. **Handling Non-existent Accounts**: Try accessing an account that doesn't exist, for example, `http://localhost:8080/savings-accounts/10`. This should return a 404 Not Found status, indicating the account does not exist.
+
+Ensure to explore the provided HATEOAS links in the responses to understand the dynamic nature of the API.
+
 
 With everything set up, it's time to see our HATEOAS service in action.
 
