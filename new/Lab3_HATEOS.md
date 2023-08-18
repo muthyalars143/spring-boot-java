@@ -27,7 +27,6 @@ Organizing our workspace is crucial. We'll create a separate directory for our p
 
 ```bash
 mkdir -p /workspace/spring-boot-java/savings-account-service
-cd /workspace/spring-boot-java/savings-account-service
 ```
 
 ### **4. Initialize Your Spring Boot Application with Gradle**
