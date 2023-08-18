@@ -47,7 +47,7 @@ To create the main application class, navigate to the appropriate directory and 
 
 ```bash
 mkdir -p /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount
-nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountApplication.java
+touch /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountApplication.java
 ```
 
 #### **SavingsAccount Entity**
@@ -55,7 +55,7 @@ nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/examp
 For the `SavingsAccount` entity:
 
 ```bash
-nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccount.java
+touch /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccount.java
 ```
 
 #### **SavingsAccountController**
@@ -63,7 +63,7 @@ nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/examp
 For the `SavingsAccountController`:
 
 ```bash
-nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountController.java
+touch /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountController.java
 ```
 
 
