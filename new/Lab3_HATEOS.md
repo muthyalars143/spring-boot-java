@@ -55,7 +55,54 @@ Now, we'll dive into the core of our application.
 
 #### **SavingsAccount Entity**
 
-The SavingsAccount entity represents a bank savings account. It will contain attributes like an ID, account number, and balance.
+The SavingsAccount entity represents a bank savings account. It will contain attributes like an ID, account number, and balance:
+
+```java
+
+@Entity
+public class SavingsAccount {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+
+    public SavingsAccount() {
+    }
+
+    public SavingsAccount(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // Standard getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+}
+
+```
 
 ```java
 @Entity
@@ -72,7 +119,37 @@ public class SavingsAccount {
 
 #### **SavingsAccountController**
 
-Controllers in Spring Boot handle incoming web requests. By enriching responses with HATEOAS links, we can guide clients on possible interactions.
+Controllers in Spring Boot handle incoming web requests. By enriching responses with HATEOAS links, we can guide clients on possible interactions:
+
+```java
+
+@RestController
+@RequestMapping("/savings-accounts")
+public class SavingsAccountController {
+
+    @Autowired
+    private SavingsAccountRepository repository;  // Assume a JpaRepository for SavingsAccount
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EntityModel<SavingsAccount>> retrieveAccount(@PathVariable Long id) {
+        Optional<SavingsAccount> accountOpt = repository.findById(id);
+        
+        if (!accountOpt.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        SavingsAccount account = accountOpt.get();
+        
+        EntityModel<SavingsAccount> resource = EntityModel.of(account);
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAccount(id));
+        
+        resource.add(linkTo.withRel("self"));
+        
+        return ResponseEntity.ok(resource);
+    }
+}
+
+```
 
 ```java
 @RestController
