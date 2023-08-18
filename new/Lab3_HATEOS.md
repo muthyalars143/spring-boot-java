@@ -40,9 +40,32 @@ unzip savings-account-service.zip -d savings-account-service
 cd savings-account-service
 ```
 
+
 #### **Main Application Class**
 
-Create the main application class at `/workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountApplication.java`.
+To create the main application class, navigate to the appropriate directory and use a text editor (like `nano` or `vim`) to create the file:
+
+```bash
+mkdir -p /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount
+nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountApplication.java
+```
+
+#### **SavingsAccount Entity**
+
+For the `SavingsAccount` entity:
+
+```bash
+nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccount.java
+```
+
+#### **SavingsAccountController**
+
+For the `SavingsAccountController`:
+
+```bash
+nano /workspace/spring-boot-java/savings-account-service/src/main/java/com/example/savingsaccount/SavingsAccountController.java
+```
+
 
 #### **SavingsAccount Entity**
 
