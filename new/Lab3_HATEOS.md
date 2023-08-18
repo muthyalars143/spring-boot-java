@@ -59,8 +59,70 @@ The SavingsAccount entity represents a bank savings account. It will contain att
 
 ```java
 
+
 @Entity
 public class SavingsAccount {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+
+    public SavingsAccount() {}
+
+    public SavingsAccount(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SavingsAccount that = (SavingsAccount) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "id=" + id +
+                ", accountNumber='" + accountNumber + ''' +
+                ", balance=" + balance +
+                '}';
+    }
+}
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,8 +167,70 @@ public class SavingsAccount {
 ```
 
 ```java
+
 @Entity
 public class SavingsAccount {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+
+    public SavingsAccount() {}
+
+    public SavingsAccount(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SavingsAccount that = (SavingsAccount) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "id=" + id +
+                ", accountNumber='" + accountNumber + ''' +
+                ", balance=" + balance +
+                '}';
+    }
+}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -152,8 +276,35 @@ public class SavingsAccountController {
 ```
 
 ```java
+
 @RestController
+@RequestMapping("/savings-accounts")
 public class SavingsAccountController {
+
+    // For simplicity, we're using a hardcoded list of accounts.
+    // In a real-world application, this would be fetched from a database.
+    private static final List<SavingsAccount> accounts = Arrays.asList(
+        new SavingsAccount("ACC123", 1000.00),
+        new SavingsAccount("ACC124", 5000.00)
+    );
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EntityModel<SavingsAccount>> retrieveAccount(@PathVariable Long id) {
+        if (id < 1 || id > accounts.size()) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        SavingsAccount account = accounts.get(id.intValue() - 1);
+        
+        EntityModel<SavingsAccount> resource = EntityModel.of(account);
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAccount(id));
+        
+        resource.add(linkTo.withRel("self"));
+        
+        return ResponseEntity.ok(resource);
+    }
+}
+
 
     @GetMapping("/savings-accounts/{id}")
     public EntityModel<SavingsAccount> retrieveAccount(@PathVariable Long id) {
