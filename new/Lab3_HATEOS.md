@@ -60,8 +60,74 @@ The SavingsAccount entity represents a bank savings account. It will contain att
 ```java
 
 
+
 @Entity
 public class SavingsAccount {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+
+    // Default constructor
+    public SavingsAccount() {}
+
+    // Parameterized constructor
+    public SavingsAccount(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    // hashCode, equals, and toString methods
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SavingsAccount that = (SavingsAccount) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+               "id=" + id +
+               ", accountNumber='" + accountNumber + ''' +
+               ", balance=" + balance +
+               '}';
+    }
+}
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -168,8 +234,74 @@ public class SavingsAccount {
 
 ```java
 
+
 @Entity
 public class SavingsAccount {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String accountNumber;
+    private Double balance;
+
+    // Default constructor
+    public SavingsAccount() {}
+
+    // Parameterized constructor
+    public SavingsAccount(String accountNumber, Double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    // hashCode, equals, and toString methods
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SavingsAccount that = (SavingsAccount) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+               "id=" + id +
+               ", accountNumber='" + accountNumber + ''' +
+               ", balance=" + balance +
+               '}';
+    }
+}
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -343,7 +475,41 @@ In this class:
 With this main class in place, you can run the application using the provided Gradle command in step 7.
 
 
+
 ### **7. Testing the HATEOAS Driven Service**
+
+#### **Starting the Application**
+Run the Spring Boot application using Gradle:
+
+```bash
+./gradlew bootRun
+```
+
+Once the application is running, you can test the following scenarios:
+
+#### **1. Fetching a Savings Account**
+Visit `http://localhost:8080/savings-accounts/1` in your browser. The response should display details of the first savings account, enriched with a self-referential HATEOAS link.
+
+#### **2. Handling Non-existent Accounts**
+Try accessing an account that doesn't exist, for example, `http://localhost:8080/savings-accounts/10`. This should return a 404 Not Found status, indicating the account does not exist.
+
+#### **3. Exploring HATEOAS Links**
+In the response of the first scenario, click on the provided HATEOAS links. They should guide you to other related functionalities or details of the API.
+
+#### **4. Testing Invalid Input**
+Try accessing the API with invalid input, like a non-numeric ID: `http://localhost:8080/savings-accounts/abc`. This should also return an error message, highlighting the importance of input validation in RESTful services.
+
+#### **5. Verifying Response Headers**
+Using tools like `curl` or Postman, send a request to fetch an account and inspect the response headers. They should contain information like content type indicating it's a JSON response.
+
+To test using `curl`:
+
+```bash
+curl -i http://localhost:8080/savings-accounts/1
+```
+
+Make sure to explore other features of the application and think of other edge cases to test, ensuring the robustness of the service.
+
 
 Run the Spring Boot application using Gradle:
 
