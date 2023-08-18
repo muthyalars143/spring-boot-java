@@ -25,6 +25,7 @@ sdk use java 17.0.8-oracle
 In the terminal, navigate to the directory where you'll set up the project:
 
 ```bash
+mkdir /workspace/spring-boot-java/savings-account-service
 cd /workspace/spring-boot-java/savings-account-service
 ```
 
